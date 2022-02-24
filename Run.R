@@ -1,0 +1,10 @@
+options(shiny.sanitize.errors = TRUE)
+source("Set Up Movie Genres.R")
+source("Setup.R")
+source("Subset Movies.R")
+source("Recommend Movies.R")
+source("Find Similar Movies.R")
+source("ui.R")
+source("server.R")
+
+runApp()
