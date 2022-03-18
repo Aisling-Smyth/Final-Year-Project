@@ -160,7 +160,7 @@ ui <- navbarPage(
              ),
              fluidRow(column(1, h3(""))),
              fluidRow(column(12, align = "center", 
-                             h3("Haven't seen these movies?"),
+                             h3("Haven't seen these movies?", style = "color:red"),
                              actionButton("reloadButton", "Refresh Options", 
                                           style='font-size:100%')))),
            
@@ -210,6 +210,7 @@ ui <- navbarPage(
                                         style='font-size:200%'))),
            fluidRow(column(1, h3(""))),
            fluidRow(h3("Top Picks For You:")),
+           # tableOutput('table2'),
            
            wellPanel(
              fluidRow(column(1),

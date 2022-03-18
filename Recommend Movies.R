@@ -85,8 +85,19 @@ recommender_system <- function(movies, poss_movies, user_ratings,
     subset(!Title %in% names_order[, 1]) %>% # take out the rated movies 
     filter(duplicated(Title) == FALSE) %>% # only one instance of each row
     arrange(desc(WeightedScore)) %>% # highest rated on top
-    slice(1:5) %>% # take the top 5
-    mutate(Rank = 1:5)
+    slice(1:5) # take the top 5
+  
+  recommendations <- recommendations %>% 
+    mutate(Rank = 1:nrow(recommendations))
+  
+  if(nrow(recommendations) != 5){
+    rows = 5 - nrow(recommendations)
+    filler <- recommender_system(movies, movies, user_ratings, 
+                       genre_list, dissimilarity) %>% 
+      slice(1:rows) %>% 
+      mutate(Rank = (1 + nrow(recommendations)):5)
+    recommendations <- rbind(recommendations, filler)
+  }
   
   rm(dissimilarity_user)
   

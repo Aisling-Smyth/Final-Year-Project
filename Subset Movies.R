@@ -1,28 +1,42 @@
 movie_subset <- function(movies, year1, year2, age, 
-                                 genres, actors, directors) 
+                         genres, actors, directors) 
 {
   # Error proofing for no Genres/actors/directors selected and subsetting
-  if(is.null(genres)){
-    genres <- levels(genre_list)
+  if(is.null(genres) && is.null(actors) && is.null(directors)){
+    movies <- movies
   }
-  movies <- movies %>%
-    subset(movies$Genre %>% grepl(paste(genres, collapse="|"), .))
-
-  if(is.null(actors)){
-    actors <- levels(actor_list)
+  else{
+    if(!is.null(genres)){
+      movies1 <- movies %>%
+        subset(movies$Genre %>% grepl(paste(genres, collapse="|"), .))
+    }
+    else{
+      movies1 <- NULL
+    }
+    
+    if(!is.null(actors)){
+      movies2 <- movies %>%
+        subset(movies$Actors %>% grepl(paste(actors, collapse="|"), .))
+    }
+    else{
+      movies2 <- NULL
+    }
+    
+    if(!is.null(directors)){
+      movies3 <- movies %>%
+        subset(movies$Directors %>% grepl(paste(directors, collapse="|"), .))
+    }
+    else{
+      movies3 <- NULL
+    }
+    
+    movies <- rbind(movies1, movies2, movies3)
   }
-  movies <- movies %>%
-    subset(movies$Actors %>% grepl(paste(actors, collapse="|"), .))
-
-  if(is.null(directors)){
-    directors <- levels(director_list)
-  }
-  movies <- movies %>%
-    subset(movies$Directors %>% grepl(paste(directors, collapse="|"), .))
-
+  
+  
   # Year filter
   movies <- movies %>% filter(Year >= year1, Year <= year2)
-
+  
   # Age Filter
   movies <- movies %>% rename(AgeRating = AgeRatingUS)
   movies$AgeRating[is.na(movies$AgeRating)] <- "PG"
@@ -39,6 +53,6 @@ movie_subset <- function(movies, year1, year2, age,
   
   movies <- movies %>% subset(.,  AgeRatingUS <= age)
   movies <- movies %>% subset(select = -c(AgeRatingUS))
-
+  
   return(movies)
 }
