@@ -27,11 +27,11 @@ ui <- navbarPage(
                            (h5("This app has multiple capabilities; you can search for information about over 10,000 movies using the 'Search Movies' tab, or a movie can be recommended for you based upon your preferences."))
                     ),
                     column(2, h5("R Code"), 
-                           tags$a(href="https://github.com/UL18233511/FYP-Interim-Code",
+                           tags$a(href="https://github.com/UL18233511/FYP",
                                   "Available here")
                     ),
                     column(2, h5("Shiny App"),
-                           tags$a(href="https://aisling-smyth.shinyapps.io/interim_report/",
+                           tags$a(href="https://aisling-smyth.shinyapps.io/FinalYearProject/",
                                   "Available here")
                     )
            )
