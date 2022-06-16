@@ -17,7 +17,7 @@ library(grid)
 library("jpeg")
 library(vegan)
 
-link = "https://raw.githubusercontent.com/UL18233511/FYP/main/Movies.csv"
+link = "https://github.com/Aisling-Smyth/Final-Year-Project/blob/main/Data/Movies.csv" 
 movies <- vroom(link,
                 locale = locale(encoding = "WINDOWS-1252")) # é or similar
 
