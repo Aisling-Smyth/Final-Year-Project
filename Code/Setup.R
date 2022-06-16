@@ -19,7 +19,7 @@ library(vegan)
 
 link = "https://raw.githubusercontent.com/UL18233511/FYP/main/Movies.csv"
 movies <- vroom(link,
-                locale = locale(encoding = "WINDOWS-1252")) # é or similar
+                locale = locale(encoding = "WINDOWS-1252")) # Ã© or similar
 
 movies$Rank = as.integer(movies$Rank)
 movies$Year = as.integer(movies$Year)
